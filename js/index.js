@@ -13,7 +13,7 @@ two.appendTo(container)
 //note: it would be cool to do this with Three.js
 //where along with this animation, cubes move on the planar axis as well
 
-const numberOfShapes = 12
+const numberOfShapes = 40
 const plotRadius = 150
 
 const shapes = [numberOfShapes]
@@ -50,7 +50,7 @@ two.bind("update", function () {
     //}
 
     shapes.forEach( shape => {
-        shape.rotation += 0.025
+        shape.rotation += 0.006125
     })
 })
 
