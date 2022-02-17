@@ -13,7 +13,7 @@ two.appendTo(container)
 //note: it would be cool to do this with Three.js
 //where along with this animation, cubes move on the planar axis as well
 
-const numberOfShapes = 40
+const numberOfShapes = 12
 const plotRadius = 150
 
 const shapes = [numberOfShapes]
@@ -41,16 +41,35 @@ for(let i = 0; i < numberOfShapes; i = i + 1) {
 const group = two.makeGroup(shapes)
 group.translation.set(250, 250)
 
+let scaler = 1
+let scaling = "grow"
+
 //listening to the updates
 two.bind("update", function () {
     group.rotation += 0.005
 
+    if (scaling == "grow") {
+        scaler += 0.005
+    }
+
+    if (scaling == "shrink") {
+        scaler -= 0.005
+    }
+
+    if (scaler > 3) {
+        scaling = "shrink"
+    }
+
+    if (scaler < 0.5) {
+        scaling = "grow"
+    }
     //for(let i = 0; i < numberOfShapes; i++) {
     //    shapes[i+1].rotation += 0.05
     //}
 
     shapes.forEach( shape => {
         shape.rotation += 0.006125
+        shape.scale = scaler
     })
 })
 
