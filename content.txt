@@ -1,15 +1,19 @@
 Body
-  Background color: #ffe8b4
+  Background Color: #f9d2cd
 
 Drawing container
-  Width: 500
-  Height: 500
+  width: 500
+  height: 500
 
-Square
+Animation
+  Loop duration: 4 seconds
+  Frames per second: 60
+
+Shapes
+  Number of shapes: 40
+  Smallest shape width: 20 // used for smallest shape (and also the size difference between each stacked shape)
   Offset left: 250
   Offset top: 250
-  Width: 100
-  Height: 100
-  Fill: #f9bc31
+  Dark fill: #f55745
+  Light fill: #f9d2cd
   Stroke: none
-  Rotation: 0.05
