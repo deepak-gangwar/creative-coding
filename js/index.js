@@ -9,6 +9,7 @@ const two = new Two(params)
 two.appendTo(container)
 
 // config for our animation
+const loopDuration = 60 * 4 // frames * duration
 const numberOfShapes = 40
 const shapeIncr = 20
 const shapes = []
@@ -29,8 +30,18 @@ for (let i = 0; i < numberOfShapes; i++) {
   shapes.push(shape)
 }
 
-two.bind("update", function () {
+two.bind("update", function (frameCount) {
   // draw
+  //frameCount will keep going up
+  //but we want to loop the animation
+  const currentFrame = frameCount % loopDuration
+
+  //We want to have it in percentage as well
+  const t = currentFrame / loopDuration
+
+  shapes.forEach(shape => {
+    shape.rotation = t * halfRotation
+  })
 })
 
 two.play()
