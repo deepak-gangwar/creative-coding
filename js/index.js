@@ -44,16 +44,8 @@ two.bind("update", function (frameCount) {
 
   shapes.forEach((shape, i) => {
     // Having a different animation start and end for each
-    let aStart, aEnd
-    if(i % 2 == 0) {
-      aStart = aDelay * (numberOfShapes - i)
-      aEnd = aDelay * i
-    } else {
-      aStart = aDelay * i
-      aEnd = aDelay * (numberOfShapes - i)
-    }
-    // const aStart = aDelay * (numberOfShapes - i)
-    // const aEnd = aDelay * i
+    aStart = aDelay * (numberOfShapes - i)
+    aEnd = aDelay * i
 
     // We can have a separate timeline for individual ones
     const u = mapAndClamp(t, aStart, 1 - aEnd, 0, 1)
@@ -61,7 +53,11 @@ two.bind("update", function (frameCount) {
 
     // The easeInOutCubit function in our utils.js takes a number b/w 0 and 1
     // Spits out another number based on that easing
-    shape.rotation = easeInOutCubic(u) * halfRotation
+    if(i % 2 === 0) {
+      shape.rotation = easeInOutCubic(u) * halfRotation
+    } else {
+      shape.rotation = -1 * easeInOutCubic(u) * halfRotation
+    }
   })
 })
 
