@@ -44,8 +44,16 @@ two.bind("update", function (frameCount) {
 
   shapes.forEach((shape, i) => {
     // Having a different animation start and end for each
-    const aStart = aDelay * i
-    const aEnd = aDelay * (numberOfShapes - i)
+    let aStart, aEnd
+    if(i % 2 == 0) {
+      aStart = aDelay * (numberOfShapes - i)
+      aEnd = aDelay * i
+    } else {
+      aStart = aDelay * i
+      aEnd = aDelay * (numberOfShapes - i)
+    }
+    // const aStart = aDelay * (numberOfShapes - i)
+    // const aEnd = aDelay * i
 
     // We can have a separate timeline for individual ones
     const u = mapAndClamp(t, aStart, 1 - aEnd, 0, 1)
