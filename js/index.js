@@ -12,6 +12,8 @@ two.appendTo(container)
 const loopDuration = 60 * 4 // frames * duration
 const numberOfShapes = 40
 const shapeIncr = 20
+// Some creative people found out that this value just works nice
+const aDelay = 1 / 120
 const shapes = []
 
 // make shapes
@@ -38,11 +40,20 @@ two.bind("update", function (frameCount) {
 
   //We want to have it in percentage as well
   const t = currentFrame / loopDuration
+  //this t is kind of a general timeline for all
 
-  shapes.forEach(shape => {
+  shapes.forEach((shape, i) => {
+    // Having a different animation start and end for each
+    const aStart = aDelay * (numberOfShapes - i)
+    const aEnd = aDelay * i
+
+    // We can have a separate timeline for individual ones
+    const u = mapAndClamp(t, aStart, 1 - aEnd, 0, 1)
+    // take t as input which is a no. b/w 0 & 1 and map it to no. b/w 0 & 1
+
     // The easeInOutCubit function in our utils.js takes a number b/w 0 and 1
     // Spits out another number based on that easing
-    shape.rotation = easeInOutCubic(t) * halfRotation
+    shape.rotation = easeInOutCubic(u) * halfRotation
   })
 })
 
