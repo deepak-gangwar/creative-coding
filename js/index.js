@@ -40,7 +40,9 @@ two.bind("update", function (frameCount) {
   const t = currentFrame / loopDuration
 
   shapes.forEach(shape => {
-    shape.rotation = t * halfRotation
+    // The easeInOutCubit function in our utils.js takes a number b/w 0 and 1
+    // Spits out another number based on that easing
+    shape.rotation = easeInOutCubic(t) * halfRotation
   })
 })
 
