@@ -51,7 +51,7 @@ two.bind("update", function (frameCount) {
     // and then back from 1 to 0 again
 
     // mapAndClamp is breaking our timeline into parts
-    
+
     // if timeline is less than half completed
     if(t < 0.5) {
       u = mapAndClamp(t, aStart, 0.5 - aEnd, 0, 1)
@@ -67,8 +67,8 @@ two.bind("update", function (frameCount) {
       // ending again becomes 1 - aEnd
       //reversed 0 and 1 in the end because now our initial point is 1
     }
-    
     shape.width = shapeMin + shapeDiff * easeInOutCubic(u)
+    shape.translation.x = 750 * easeInOutCubic(u)
   })
 })
 
