@@ -56,4 +56,16 @@ two.bind("update", function (frameCount) {
   })
 })
 
+document.addEventListener("mousemove", function (event) {
+  // We are manipulating value of t based on mouse position
+  t = mapAndClamp(event.pageX, 0, window.innerWidth, 0, 1)
+  
+  // map and clamp the x position of cursor 
+  // with 0 being start and window.innerWidth being 100 %
+  // and map that to 0 and 1 for the value of t 
+  
+  // for doing it in y direction
+  // t = mapAndClamp(event.pageY, 0, window.innerHeight, 0, 1)
+})
+
 two.play()
