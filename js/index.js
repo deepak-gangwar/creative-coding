@@ -10,15 +10,18 @@ const params = {
 const two = new Two(params)
 two.appendTo(container)
 
-//creating the shape
-const shape = two.makeRectangle(250, 250, 100, 100)
-shape.fill = '#f9bc31'
-shape.noStroke()
-shape.rotation = Math.PI * 0.25
+// config for our animation
+const numberOfShapes = 25
+const shapes = []
+
+// make shapes
+for (let i = 0; i < numberOfShapes; i++) { 
+  
+}
 
 //listening to any updates
 two.bind("update", function () {
-    shape.rotation += 0.05
+  // draw
 })
 
 two.play()
