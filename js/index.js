@@ -31,11 +31,13 @@ for (let i = 0; i < numberOfShapes; i++) {
   shapes.push(shape)
 }
 
+let t = 0
+
 //listening to any updates
 two.bind("update", function (frameCount) {
   // draw
-  const currentFrame = frameCount % 240
-  const t = currentFrame / loopDuration
+  // const currentFrame = frameCount % 240
+  // const t = currentFrame / loopDuration
 
   shapes.forEach((shape, i) => {
     const aStart = 0.01 * (numberOfShapes - i)
