@@ -9,16 +9,51 @@ const two = new Two(params)
 two.appendTo(container)
 
 // config for our animation
-const numberOfShapes = 50
+const numberOfShapes = 25
 const shapes = []
+const loopDuration = 6 * 60
 
 // make shapes
-for (let i = 0; i < numberOfShapes; i++) { 
+for (let i = 0; i < numberOfShapes; i++) {
+  const size = 20
+  const sx = size * i + 10
+  const sy = 250
+  const sr = 0
+  const ex = randomNumber(50, 450)
+  const ey = randomNumber(50, 450)
+  const er = randomNumber(-2 * fullRotation, 2 * fullRotation)
+
+  const shape = two.makeRectangle(sx, sy, size, size)
+  shape.fill = '#004F73'
+  shape.noStroke()
   
+  shape.data = {
+    sx: sx,
+    sy: sy,
+    sr: sr,
+    ex: ex,
+    ey: ey,
+    er: er
+  }
+
+  shapes.push(shape)
 }
 
-two.bind("update", function () {
+two.bind("update", function (frameCount) {
   // draw
+  const currentFrame = frameCount % loopDuration
+  const t = currentFrame / loopDuration
+
+  shapes.forEach((shape, i) => {
+    const x = mapAndClamp(t, 0, 1, shape.data.sx, shape.data.ex)
+    const y = mapAndClamp(t, 0, 1, shape.data.sy, shape.data.ey)
+    const rotation = mapAndClamp(t, 0, 1, shape.data.sr, shape.data.er)
+
+    shape.translation.x = x
+    shape.translation.y = y
+
+    shape.rotation = rotation
+  })
 })
 
 two.play()
