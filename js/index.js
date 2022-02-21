@@ -45,14 +45,24 @@ two.bind("update", function (frameCount) {
   const t = currentFrame / loopDuration
 
   shapes.forEach((shape, i) => {
-    const x = mapAndClamp(t, 0, 1, shape.data.sx, shape.data.ex)
-    const y = mapAndClamp(t, 0, 1, shape.data.sy, shape.data.ey)
-    const rotation = mapAndClamp(t, 0, 1, shape.data.sr, shape.data.er)
+    let u = 0
+
+    if(t < 0.5) {
+      u = mapAndClamp(t, 0, 0.5, 0, 1)
+    } else {
+      u = mapAndClamp(t, 0.5, 1, 1, 0)
+    }
+
+    const cu = easeInOutCubic(u)
+    
+    const x = mapAndClamp(cu, 0, 1, shape.data.sx, shape.data.ex)
+    const y = mapAndClamp(cu, 0, 1, shape.data.sy, shape.data.ey)
+    const r = mapAndClamp(cu, 0, 1, shape.data.sr, shape.data.er)
 
     shape.translation.x = x
     shape.translation.y = y
 
-    shape.rotation = rotation
+    shape.rotation = r
   })
 })
 
