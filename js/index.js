@@ -21,10 +21,10 @@ for (let i = 0; i < numberOfShapes; i++) {
   const sy = 250
   const sr = 0
   // const ss = 1
-  const plotRadius = 200
-  const angle = fullRotation * i / numberOfShapes
-  const ex = 250 + plotRadius * Math.cos(angle)
-  const ey = 250 + plotRadius * Math.sin(angle)
+  // const plotRadius = 200
+  // const angle = fullRotation * i / numberOfShapes
+  const ex = randomNumber(50, 450)
+  const ey = randomNumber(50, 450)
   const er = randomNumber(-2 * fullRotation, 2 * fullRotation)
   // const es = randomNumber(0.5, 1.5)
 
@@ -52,6 +52,12 @@ two.bind("update", function (frameCount) {
   const t = currentFrame / loopDuration
 
   shapes.forEach((shape, i) => {
+    if(currentFrame === 0) {
+      shape.data.ex = randomNumber(50, 450)
+      shape.data.ey = randomNumber(50, 450)
+      shape.data.er = randomNumber(-2 * fullRotation, 2 * fullRotation)
+    }
+
     // This is the stuff for each individual shape
     const aStart = aDelay * (numberOfShapes - i)
     const aEnd = aDelay * i
