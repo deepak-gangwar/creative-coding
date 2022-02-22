@@ -88,5 +88,19 @@ two.bind("update", function (frameCount) {
   })
 })
 
+const bgColors = ['#45d3c5', '#ffe8b4', '#f9d2cd', '#bcdffd']
+const shapeColors = ['#004F73', '#f8bc30', '#f45745', '#5745d3']
+let currentColorIndex = 0
+
+document.addEventListener("click", () => {
+  currentColorIndex++
+  let newColorIndex = currentColorIndex % shapeColors.length
+
+  document.body.style.background = bgColors[newColorIndex]
+  shapes.forEach(shape => {
+    shape.fill = shapeColors[newColorIndex]
+  })
+})
+
 two.play()
 
