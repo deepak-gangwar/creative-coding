@@ -13,5 +13,5 @@ section {
 }
 
 path {
-    transition: 1s;
+    transition: fill 1s;
 }
