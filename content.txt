@@ -1,15 +1,12 @@
 Body
-  Background color: #ffe8b4
+  Background color: #E4FFFD
 
-Drawing container
-  Width: 500
-  Height: 500
+Animation
+  Loop duration: 12 //seconds
+  Frames per second: 60
 
-Square
+Shapes
+  Number of shapes: 25
   Offset left: 250
-  Offset top: 250
-  Width: 100
-  Height: 100
-  Fill: #f9bc31
-  Stroke: none
-  Rotation: 0.05
+  Starting width: 50
+  Ending width: 500
