@@ -20,11 +20,13 @@ for (let i = 0; i < numberOfShapes; i++) {
   const sx = size * i + 10
   const sy = 250
   const sr = 0
-  const ss = 1
-  const ex = randomNumber(50, 450)
-  const ey = randomNumber(50, 450)
+  // const ss = 1
+  const plotRadius = 200
+  const angle = fullRotation * i / numberOfShapes
+  const ex = 250 + plotRadius * Math.cos(angle)
+  const ey = 250 + plotRadius * Math.sin(angle)
   const er = randomNumber(-2 * fullRotation, 2 * fullRotation)
-  const es = randomNumber(0.5, 1.5)
+  // const es = randomNumber(0.5, 1.5)
 
   const shape = two.makeRectangle(sx, sy, size, size)
   shape.fill = '#004F73'
@@ -34,11 +36,11 @@ for (let i = 0; i < numberOfShapes; i++) {
     sx: sx,
     sy: sy,
     sr: sr,
-    ss: ss,
+    // ss: ss,
     ex: ex,
     ey: ey,
     er: er,
-    es: es
+    // es: es
   }
 
   shapes.push(shape)
@@ -70,13 +72,13 @@ two.bind("update", function (frameCount) {
     const x = mapAndClamp(cu, 0, 1, shape.data.sx, shape.data.ex)
     const y = mapAndClamp(cu, 0, 1, shape.data.sy, shape.data.ey)
     const r = mapAndClamp(cu, 0, 1, shape.data.sr, shape.data.er)
-    const s = mapAndClamp(cu, 0, 1, shape.data.ss, shape.data.es)
+    // const s = mapAndClamp(cu, 0, 1, shape.data.ss, shape.data.es)
 
     shape.translation.x = x
     shape.translation.y = y
 
     shape.rotation = r
-    shape.scale = s
+    // shape.scale = s
   })
 })
 
