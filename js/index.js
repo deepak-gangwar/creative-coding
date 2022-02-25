@@ -50,17 +50,24 @@ two.bind("update", function (frameCount) {
   const t = currentFrame / loopDuration
 
   shapes.forEach((shape, i) => {
-    const r = startRotation
-    const w = startWidth
+    let r = startRotation
+    let w = startWidth
 
+    // This setup here is the general timeline per shape
     if (t < 0.25) {
       // sequence 1, width grow
+      const u = mapAndClamp(t, 0, 0.25, 0, 1)
+      w = mapAndClamp(u, 0, 1, startWidth, endWidth)
     } else if (t < 0.5) {
       // sequence 2, rotate the rectangles
+      w = endWidth
     } else if (t < 0.75) {
       // sequence 3, width shrinks
+      const u = mapAndClamp(t, 0.5, 0.75, 0, 1)
+      w = mapAndClamp(u, 0, 1, endWidth, startWidth)
     } else  {
       // sequence 4, rotate back to normal
+      w = startWidth
     }
 
     shape.width = w
