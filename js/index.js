@@ -56,18 +56,25 @@ two.bind("update", function (frameCount) {
     // This setup here is the general timeline per shape
     if (t < 0.25) {
       // sequence 1, width grow
+      // mapAndClamp of u just stretches the timeline here in all of them
       const u = mapAndClamp(t, 0, 0.25, 0, 1)
       w = mapAndClamp(u, 0, 1, startWidth, endWidth)
+      r = startRotation
     } else if (t < 0.5) {
       // sequence 2, rotate the rectangles
+      const u = mapAndClamp(t, 0.25, 0.5, 0, 1)
       w = endWidth
+      r = mapAndClamp(u, 0, 1, startRotation, endRotation)
     } else if (t < 0.75) {
       // sequence 3, width shrinks
       const u = mapAndClamp(t, 0.5, 0.75, 0, 1)
       w = mapAndClamp(u, 0, 1, endWidth, startWidth)
+      r = endRotation
     } else  {
       // sequence 4, rotate back to normal
+      const u = mapAndClamp(t, 0.75, 1, 0, 1)
       w = startWidth
+      r = mapAndClamp(u, 0, 1, endRotation, startRotation)
     }
 
     shape.width = w
