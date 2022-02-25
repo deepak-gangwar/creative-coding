@@ -61,6 +61,7 @@ two.bind("update", function (frameCount) {
 
   shapes.forEach((shape, i) => {
     // PER SHAPE LEVEL
+    // Each shape has its own timeline and delay
 
     let r = startRotation
     let w = startWidth
@@ -76,6 +77,7 @@ two.bind("update", function (frameCount) {
     }
 
     // This setup here is the general timeline per shape
+    // Each individual timeline has four parts to it 
     if (t < 0.25) {
       // PER SEQUENCE LEVEL
 
