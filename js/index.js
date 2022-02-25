@@ -15,8 +15,10 @@ const numberOfShapes = 50
 const shapes = []
 const startWidth = 50
 const endWidth = 500
+const diffWidth = endWidth - startWidth
 const startRotation = 0
 const endRotation = fullRotation * 6 / 360
+const loopDuration = 12 * 60
 
 // make shapes
 for (let i = 0; i < numberOfShapes; i++) { 
@@ -37,11 +39,19 @@ for (let i = 0; i < numberOfShapes; i++) {
     shape.fill = '#99e6e0'
   }
   // We could have done modulo here, but we have tried to overlay
+
+  shapes.push(shape)
 }
 
 //listening to any updates
-two.bind("update", function () {
+two.bind("update", function (frameCount) {
   // draw
+  const currentFrame = frameCount % loopDuration
+  const t = currentFrame / loopDuration
+
+  shapes.forEach((shape, i) => {
+    shape.width = startWidth + easeInOutCubic(t) * diffWidth
+  })
 })
 
 two.play()
